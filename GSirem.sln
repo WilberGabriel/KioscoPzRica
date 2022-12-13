@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kiosko.gSirem", "kiosko.gSirem\kiosko.gSirem.csproj", "{6C88309F-4EC0-4BFB-B80C-89F9BC29E5EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C88309F-4EC0-4BFB-B80C-89F9BC29E5EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C88309F-4EC0-4BFB-B80C-89F9BC29E5EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C88309F-4EC0-4BFB-B80C-89F9BC29E5EE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6C88309F-4EC0-4BFB-B80C-89F9BC29E5EE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6C88309F-4EC0-4BFB-B80C-89F9BC29E5EE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6C88309F-4EC0-4BFB-B80C-89F9BC29E5EE}.Debug|x86.Build.0 = Debug|Any CPU
+		{6C88309F-4EC0-4BFB-B80C-89F9BC29E5EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C88309F-4EC0-4BFB-B80C-89F9BC29E5EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C88309F-4EC0-4BFB-B80C-89F9BC29E5EE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6C88309F-4EC0-4BFB-B80C-89F9BC29E5EE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6C88309F-4EC0-4BFB-B80C-89F9BC29E5EE}.Release|x86.ActiveCfg = Release|Any CPU
+		{6C88309F-4EC0-4BFB-B80C-89F9BC29E5EE}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B6C78F70-BBF0-49A1-B139-0E1FD8C07D86}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
+	EndGlobalSection
+EndGlobal

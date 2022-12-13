@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            .linea { text-align: center; font-size: 1rem; padding-top: 5px; background-color: #a1a4a7;}
+           
+          </style>
+    </head>   
+<body style="font-family:Arial, Helvetica, sans-serif;">
+    <div style="max-width:813px;">
+
+
+        <div style="display: flex; flex-direction: row; flex-wrap: wrap; text-align: center;">
+            <div style="width: 500px;">
+              <p>
+                <table style="width: 90%;">
+                    <tr>
+                        <td style="text-align: center; font-size: 1.8rem;padding-bottom: 12px; padding-top: 85px; width: 100%; padding-left: 50px;">Estados Unidos Mexicanos</td>                              
+                    </tr>
+                    <tr>
+                       
+                        <td><span style="text-align: center; font-size: 1.8rem; width: 100%; padding-top: 10px;">Acta de Nacimiento</span></td>
+                    </tr>
+                </table>
+              </p>
+            </div>
+            <div style="width: 300px; ">
+             
+                <table  style=" width: 100%;">
+                    <tr>                        
+                        <td style="width:100% ;font-size: 0.9rem;">Identificador Electrónico</td>
+                    </tr>         
+                    <tr>                        
+                       <td  style="width:100% ;font-size: 0.9rem;">{identicadorElectronico}</td>                                            
+                    </tr>  
+                    <tr>                        
+                        <td  style="width:100% ;font-size: 0.9rem;"><img src="data:image/png;base64,{codIEImage}"   /></td>                                            
+                     </tr>  
+                     <tr style="background-color: #a1a4a7;">                        
+                        <td  style="width:100% ;font-size: 0.9rem;">Clave Única de Registro de Población</td>                                            
+                     </tr>      
+                     <tr>                        
+                        <td  style="width:100% ;font-size: 0.9rem;">{curp}</td>                                            
+                     </tr>
+                     <tr>                        
+                        <td  style="width:100% ;font-size: 0.9rem;"><img src="data:image/png;base64,{curpImage}"   /></td>                                            
+                     </tr>  
+                     <tr style="background-color:#a1a4a7">                        
+                        <td  style="width:100% ;font-size: 0.9rem;">Número de Certificado de Nacimiento</td>                                            
+                     </tr>     
+                     <tr>                        
+                        <td  style="width:100% ;font-size: 0.9rem;">{ncn}</td>                                            
+                     </tr>
+                     <tr style="background-color:#a1a4a7">                        
+                        <td  style="width:100% ;font-size: 0.9rem;">Entidad</td>                                            
+                     </tr>      
+                     <tr>                        
+                        <td  style="width:100% ;font-size: 0.9rem;">{entidad}</td>                                            
+                     </tr>
+                     <tr style="background-color:#a1a4a7">                        
+                        <td  style="width:100% ;font-size: 0.9rem;">Municipio de Registro</td>                                            
+                     </tr>     
+                     <tr>                        
+                        <td  style="width:100% ;font-size: 0.9rem;">{ncn}</td>                                            
+                     </tr>
+                </table>
+             
+            
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: row; flex-wrap: wrap; text-align: center; padding-top: 10px;">
+            <div style="width: 300px;">               
+            </div>
+            <div style="width: 500px; padding-bottom: 5px;">
+                <table  style=" width: 100%;border-color: gray; border-collapse: collapse; ">
+                    <tr>                        
+                        <td style="font-size: 0.6rem;background-color:#a1a4a7;border-color: gray; border-width: 1px; border-style:inset;">Compareció</td>
+                        <td style="font-size: 0.6rem;background-color:#a1a4a7;border-color: gray; border-width: 1px; border-style:inset;">Oficialia</td>
+                        <td style="font-size: 0.6rem;background-color:#a1a4a7;border-color: gray; border-width: 1px; border-style:inset;">Fecha de Registro</td>
+                        <td style="font-size: 0.6rem;background-color:#a1a4a7;border-color: gray; border-width: 1px; border-style:inset;">Libro</td>
+                        <td style="font-size: 0.6rem;background-color:#a1a4a7;border-color: gray; border-width: 1px; border-style:inset;">Número de Acta</td>
+                    </tr>   
+                    <tr>                        
+                        <td style="font-size: 0.7rem;border-color: #a1a4a7; border-width: 1px; border-style:inset;">{comparecio}</td>
+                        <td style="font-size: 0.7rem;border-color: #a1a4a7; border-width: 1px; border-style:inset;">{oficialia}</td>
+                        <td style="font-size: 0.7rem;border-color: #a1a4a7; border-width: 1px; border-style:inset;">{fechaRegistro}</td>
+                        <td style="font-size: 0.7rem;border-color: #a1a4a7; border-width: 1px; border-style:inset;">{libro}</td>
+                        <td style="font-size: 0.7rem;border-color: #a1a4a7; border-width: 1px; border-style:inset;">{numeroActa}</td>
+                    </tr>   
+                </table>
+            </div>
+          </div>
+    
+
+          <div  class="linea">Datos de la Persona Registrada</div>
+
+          <div style="width: 100%; padding-top: 20px; text-align: center;">
+            <table style="border-collapse: collapse; width: 100%; ">                
+                <tr style="border-bottom: .5pt solid black;">
+                    <td style="font-size: 0.8rem;">{nombres}</td>
+                    <td style="font-size: 0.8rem;">{primerApellido}</td>
+                    <td style="font-size: 0.8rem;">{segundoApellido}</td>
+                   
+                </tr>
+               
+                <tr>                    
+                    <td style="font-size: 0.8rem;">Nombre(s)</td>
+                    <td style="font-size: 0.8rem;">Primer Apellido</td>
+                    <td style="font-size: 0.8rem;">Segundo Apellido</td>
+                </tr>
+               
+            </table>
+        </div>
+
+        <div style="width: 100%; padding-top: 20px; text-align: center; padding-bottom: 10px;">
+            <table style="border-collapse: collapse; width: 100%;">                
+                <tr style="border-bottom: .5pt solid black;">
+                    <td style="font-size: 0.8rem;">{sexo}</td>
+                    <td style="font-size: 0.8rem;">{fechaNacimiento}</td>
+                    <td style="font-size: 0.8rem;">{lugarNacimiento}</td>                   
+                </tr>
+                <tr>                    
+                    <td style="font-size: 0.8rem;">Sexo</td>
+                    <td style="font-size: 0.8rem;">Fecha Nacimiento</td>
+                    <td style="font-size: 0.8rem;">Lugar de Nacimiento</td>
+                </tr>               
+            </table>
+        </div>
+
+        <div  class="linea">Datos de Filiación de la Persona Registrada</div>
+
+        <div style="width: 100%; padding-top: 20px; text-align: center; padding-bottom: 10px;">
+            <table style="border-collapse: collapse; width: 100%;">                
+                <tr style="border-bottom: .5pt solid black;">
+                    <td style="font-size: 0.8rem;">{nombresDF}</td>
+                    <td style="font-size: 0.8rem;">{primerApellidoDF}</td>
+                    <td style="font-size: 0.8rem;">{segundoApellidoDF}</td>
+                    <td style="font-size: 0.8rem;">{lugarNacimientoDF}</td> 
+                    <td style="font-size: 0.8rem;">{lugarNacimientoDF}</td>                   
+                </tr>
+                <tr>                    
+                    <td style="font-size: 0.8rem;">Nombre(s)</td>
+                    <td style="font-size: 0.8rem;">Primer Apellido</td>
+                    <td style="font-size: 0.8rem;">Segundo Apellido</td>
+                    <td style="font-size: 0.8rem;">Nacionalidad</td>
+                    <td style="font-size: 0.8rem;">CURP</td>
+                </tr>               
+            </table>
+        </div>
+
+        <div style="width: 100%; padding-top: 20px; text-align: center; padding-bottom: 10px;">
+            <table style="border-collapse: collapse; width: 100%;">                
+                <tr style="border-bottom: .5pt solid black;">
+                    <td style="font-size: 0.8rem;">{nombresDF2}</td>
+                    <td style="font-size: 0.8rem;">{primerApellidoDF2}</td>
+                    <td style="font-size: 0.8rem;">{segundoApellidoDF2}</td>
+                    <td style="font-size: 0.8rem;">{lugarNacimientoDF2}</td> 
+                    <td style="font-size: 0.8rem;">{lugarNacimientoDF2}</td>                   
+                </tr>
+                <tr>                    
+                    <td style="font-size: 0.8rem;">Nombre(s)</td>
+                    <td style="font-size: 0.8rem;">Primer Apellido</td>
+                    <td style="font-size: 0.8rem;">Segundo Apellido</td>
+                    <td style="font-size: 0.8rem;">Nacionalidad</td>
+                    <td style="font-size: 0.8rem;">CURP</td>
+                </tr>               
+            </table>
+        </div>
+
+        <div style="width: 100%; padding-bottom: 5px; padding-top: 5px;">
+            <table  style=" width: 100%;border-color: gray; border-collapse: collapse; ">
+                <tr>                        
+                    <td style="font-size: 0.8rem;background-color:#a1a4a7;border-color: gray; border-width: 1px; border-style:inset;text-align: center; width: 60%;">Anotaciones Margiales</td>
+                    <td  style="font-size: 0.8rem;background-color:#a1a4a7;border-color: gray; border-width: 1px; border-style:inset;text-align: center;">Certificación</td>                   
+                </tr>   
+                <tr>                        
+                    <td rowspan="2" style="font-size: 0.5rem;color: black; border-color: #a1a4a7; border-width: 1px; border-style:inset;position: relative ;top: -15px;"><p>{anotacionesMargianles}</p></td>
+                    <td  style="font-size: 0.6rem;border-color: #a1a4a7; border-width: 1px; border-style:inset;">
+                    <p style=" text-align:justify; " >Se extiende la presente copia certificada, con fundamento en los artículos 52 y
+                        53 del Código Civil del Estado de Veracruz, artículos 18 y 21 C del Reglamento
+                        del Registro Civil y los artículos 2 fracción I y 11 de la Ley de la Firma
+                        Electrónica del Estado de Veracruz. La Firma Electrónica con la que cuenta es
+                        vigente a la fecha de expedición; tiene validez jurídica y probatoria de acuerdo a
+                        las disposiciones legales en la materia.. 
+                        </p>
+                    </td>
+                    
+                  
+                </tr>   
+                <tr>                        
+                    <td  style="font-size: 0.9rem;color: black; border-color: #a1a4a7; border-width: 1px; border-style:inset;">{fecha}</td>
+                   
+                    
+                  
+                </tr>   
+            </table>
+        </div>
+
+        <div style="display: flex; flex-direction: row; flex-wrap: wrap; text-align: center; padding-top: 10px;">
+            <div style="width: 350px;">   
+                <table  style=" width: 100%;border-color: gray; border-collapse: collapse; ">
+                    <tr>                        
+                        <td style="font-size: 0.7rem;border-color: #a1a4a7; border-width: 1px; border-style:inset; width: 60%; "><img src="data:image/png;base64,{QrImage}"/></td>
+                        <td style="font-size: 0.7rem;border-color: #a1a4a7; border-width: 1px; border-style:inset;"><img src="data:image/png;base64,{codVerImage}"/></td>    
+                    </tr> 
+                    
+                                      
+                </table>         
+            </div>
+            <div style="width: 450px; padding-bottom: 5px;">
+                <table  style=" width: 100%;border-color: gray; border-collapse: collapse; ">
+                    <tr>                        
+                        <td colspan="2" style="font-size: 0.8rem; padding-bottom: 5px;">Firma Electrónica Avanzada</td>
+                    </tr> 
+                    <tr>                        
+                        <td colspan="2" style="font-size: 0.6rem; text-align: justify; padding-bottom: 5px;">{firmaElectronica}</td>
+                    </tr>   
+                    <tr>                        
+                        <td style="font-size: 0.7rem;border-color: #a1a4a7; border-width: 1px; border-style:inset; width: 60%;"><img src="data:image/png;base64,{FirmaImage}"/></td>
+                        <td style="font-size: 0.7rem;border-color: #a1a4a7; border-width: 1px; border-style:inset;"><img src="data:image/png;base64,{codigoQrImage}"/></td>                      
+                    </tr>   
+                    <tr>                        
+                        <td colspan="2" style="font-size: 0.6rem; ">{nombreORC}</td>
+                    </tr>  
+                    <tr>                        
+                        <td colspan="2" style="font-size: 0.6rem;">OFICIAL DEL REGISTRO CIVIL</td>
+                    </tr>  
+                </table>
+            </div>
+          </div>
+
+       
+
+        <div style="text-align: justify; font-size: .5rem; padding-bottom: 5px;">
+        <p>La presente copia certificada del acta es un extracto del acta que se encuentra en los archivos del Registro Civil correspondiente, la cual se ha expedido con base en las disposiciones jurídicas
+            aplicables, cuyos datos pueden ser verificados en la página https://cevar.registrocivil.gob.mx/eVAR/ConsultaFolio.jsp ,capturando el Identificador Electrónico que se encuentra en la parte superior
+            derecha del acta, para su consulta en dispositivos móviles, descarga una aplicación para lectura del código QR.</p>
+        </div>
+
+       
+     
+
+    </div>
+</body>
+</html>

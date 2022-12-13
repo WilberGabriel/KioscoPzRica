@@ -1,0 +1,19 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wpfKiosko20"
+        xmlns:telerikDocking="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Docking" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:Effects="clr-namespace:Telerik.Windows.Controls.ColorEditor.Effects;assembly=Telerik.Windows.Controls.Input" x:Class="wpfKiosko20.MainWindow"
+        mc:Ignorable="d"
+        Title="Kiosko 2.0" Height="573.333" Width="936.242">
+    <Grid Loaded="Grid_Loaded" HorizontalAlignment="Left" Margin="0,0,-0.333,-0.333">
+        <Button x:Name="btnCobrar" FontSize="18px" Content="Cobrar" HorizontalAlignment="Left" Margin="633,334,0,0" VerticalAlignment="Top" Width="171" Height="40" Click="BtnCobrar_Click"/>
+        <TextBox x:Name="txtMonto"   HorizontalAlignment="Left" HorizontalContentAlignment="Right" Height="40"   FontSize="25px" PreviewTextInput="NumberValidationTextBox" Margin="336,335,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="271"/>
+        <Label x:Name="lblLeyenda" Content="Label" HorizontalAlignment="Left" Margin="128,396,0,0" VerticalAlignment="Top" Width="479"/>
+        <telerik:RadButton x:Name="btnCancela"  FontSize="18px" Content="Cancelar" HorizontalAlignment="Left" Height="46" Margin="253,465,0,0" VerticalAlignment="Top" Width="230" Click="RadButton_Click"/>
+        <telerik:RadButton x:Name="btnHabilita" FontSize="18px" Content="Habilitar" HorizontalAlignment="Left" Height="46" Margin="85,334,0,0" VerticalAlignment="Top" Width="187" Click="BtnHabilita_Click"  />
+
+        
+    </Grid>
+</Window>
