@@ -27,8 +27,7 @@ namespace kiosko.gSirem
         private string archivoImagenRecibo = "";
         private System.Windows.Forms.Timer aTimer;
         private int counter = 60;
-        List<Multipago> lmul = null;
-        List<ActaNacimientoBE> lAc = null;
+        private BusquedaContribuyente frmBusqueda;
 
         public frmActaNacimiento()
         {
@@ -45,7 +44,7 @@ namespace kiosko.gSirem
 
             Guid guid = Guid.NewGuid();
             string acta = "";
-            ActaNacimientoBE actaBE = lAc[0];
+            ActaNacimientoBE actaBE = Global.Acta;
             //StringBuilder builder = new StringBuilder();
 
             //for (int i = 0; i < 5; i++)
@@ -576,8 +575,8 @@ namespace kiosko.gSirem
             lblTimer.Text = "...";
             //-------------------------------------------
             btnConfirmar.Enabled = true;
-            lmul = null;
-            lAc = null;
+            Global.Multipago = null;
+            Global.Acta = null;
         }
 
         #endregion
@@ -612,17 +611,16 @@ namespace kiosko.gSirem
         {
             if (WithErrorsCURP_Padres())
             {
-                List<ActaNacimientoBE> lAc = new List<ActaNacimientoBE>();
                 string curp, nombre, paterno, materno;
                 curp = txtCurpBusqueda.Text.ToString().Trim().ToUpper();
                 nombre = txtNombresCurp.Text.ToString().Trim().ToUpper();
                 paterno = txtPrimerApellidoCurp.Text.ToString().Trim().ToUpper();
                 materno = txtSegundoApellidoCurp.Text.ToString().Trim().ToUpper();
 
-                lAc = BusquedaCurp(curp, nombre, paterno, materno);
-                if (lAc.Count > 0)
+                BusquedaCurp(curp, nombre, paterno, materno);
+                if (Global.Acta != null)
                 {
-                    AsignaFormulario(lAc);
+                    AsignaFormulario(Global.Acta);
                     lblEstatusCurp.Text = "LA INFORMACIÓN HA SIDO VALIDADA, FAVOR DE CONTINUAR CON EL TRÁMITE...";
                     lblEstatusDP.Text = "...";
                 }
@@ -648,7 +646,6 @@ namespace kiosko.gSirem
         {
             if (WithErrorsDatosPersonales())
             {
-                List<ActaNacimientoBE> lAc = new List<ActaNacimientoBE>();
                 string nombre, paterno, materno, fNacimiento,sexo,edoNacimiento;
                
                 nombre = txtNombreDP.Text.ToString().Trim().ToUpper();
@@ -659,11 +656,11 @@ namespace kiosko.gSirem
                 fNacimiento = $"{txtAnioNacimientoDG.Text.ToString().Trim()}-{ddlMesNacimientoDP.SelectedIndex+1.ToString("##")}-{ddlDiaNacimientoDP.Text.ToString().Trim()}";
                 //2016-05-12
 
-                lAc = BusquedaDatosPersonales(nombre, paterno, materno, fNacimiento, sexo, edoNacimiento);
+                Global.Acta = BusquedaDatosPersonales(nombre, paterno, materno, fNacimiento, sexo, edoNacimiento);
               
-                if (lAc.Count > 0)
+                if (Global.Acta!=null)
                 {
-                    AsignaFormulario(lAc);
+                    AsignaFormulario(Global.Acta);
                     lblEstatusDP.Text = "LA INFORMACIÓN HA SIDO VALIDADA, FAVOR DE CONTINUAR CON EL TRÁMITE...";
                     lblEstatusCurp.Text = "...";
                 }
@@ -776,11 +773,11 @@ namespace kiosko.gSirem
             radWizard1.CancelButton.Enabled = false;
             radWizard1.BackButton.Enabled = false;
             radWizard1.FinishButton.Enabled = false;
-            if(lmul!=null && lAc!=null && procesarPago())
+            if (Global.Multipago != null && Global.Acta != null && procesarPago())
             {
                 ImprimirTicketR2();
                 lblEstatusCambio.Text = $"Se realizo un pago de: ${monto:#,#0.00}, favor de verificar su cambio $0.00. Gracias";
-
+                registrarPago(monto);
                 aTimer = new System.Windows.Forms.Timer();
                 aTimer.Tick += new EventHandler(aTimer_Tick);
                 aTimer.Interval = 500; // 1 second
@@ -821,29 +818,29 @@ namespace kiosko.gSirem
             return existe;
         }
 
-        List<ActaNacimientoBE> BusquedaDatosPersonales(string nombre, string paterno, string materno, string fNacimiento, string sexo, string edoNacimiento)
+        ActaNacimientoBE BusquedaDatosPersonales(string nombre, string paterno, string materno, string fNacimiento, string sexo, string edoNacimiento)
         {
-            lAc = new List<ActaNacimientoBE>();
+            Global.Acta = new ActaNacimientoBE();
             AccesoDatos obj = new AccesoDatos();
-            lAc = obj.GetDatosPersonalesRC(nombre, paterno, materno, fNacimiento, sexo, edoNacimiento);
+            Global.Acta = obj.GetDatosPersonalesRC(nombre, paterno, materno, fNacimiento, sexo, edoNacimiento);
 
-            return lAc;
+            return Global.Acta;
         }
 
-        List<ActaNacimientoBE> BusquedaCurp(string curp, string nombre, string paterno, string materno)
+        ActaNacimientoBE BusquedaCurp(string curp, string nombre, string paterno, string materno)
         {
-            lAc = new List<ActaNacimientoBE>();
+            Global.Acta = new ActaNacimientoBE();
             AccesoDatos obj = new AccesoDatos();
-            lAc = obj.GetCurpByDP(curp,nombre,paterno,materno,2);
+            Global.Acta = obj.GetCurpByDP(curp,nombre,paterno,materno,2);
 
-            return lAc;
+            return Global.Acta;
         }
-        List<Multipago> GetMultipago(string letra)
+        Multipago GetMultipago(string letra)
         {
-            List<Multipago> lmul = new List<Multipago>();
+            Global.Multipago = new Multipago();
             AccesoDatos obj = new AccesoDatos();
-            lmul = obj.GetMultipago(letra);
-            return lmul;
+            Global.Multipago = obj.GetMultipago(letra);
+            return Global.Multipago;
         }
         Boolean procesarPago()
         {
@@ -851,47 +848,98 @@ namespace kiosko.gSirem
 
             return true;
         }
+        void registrarPago(Decimal total)
+        {
+            AccesoDatos obj = new AccesoDatos();
+            Decimal monto = total;
+            Decimal corriente = 0;
+            Decimal adicional = 0;
+
+            if (!Global.Multipago.ADICIONAL)
+            {
+                corriente = monto;
+                adicional = 0;
+            }
+            else
+            {
+                corriente = monto / 1.10M;
+                adicional = monto / 1.10M * 0.10M;
+            }
+            corriente = Convert.ToDecimal(string.Format("{0:0.00}", corriente));
+            adicional = Convert.ToDecimal(string.Format("{0:0.00}", adicional));
+            string contribuyente = Global.Acta.CNOMBREREG + " " + Global.Acta.CAPE1REG + "" + Global.Acta.CAPE2REG;
+            string rfc = "";
+            string domicilio = "";
+            string cfdi = "NO";
+
+            RadMessageBox.SetThemeName("TelerikMetroTouch");
+            DialogResult result = RadMessageBox.Show(this, "¿Va a requerir factura?", "KIOSCO", MessageBoxButtons.YesNo, RadMessageIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                frmBusqueda = new BusquedaContribuyente();
+                frmBusqueda.ShowDialog(this);
+                rfc = "GADW010101000";
+                domicilio = "DOMICILIO DE WILBER";
+                cfdi = "SI";
+            }
+            else
+            {
+                rfc = "XAXX010101000";
+                domicilio = "EJEMPLO DE DOMICILIO";
+            }
+            obj.RegistrarPagoActa(new PagoActa()
+            {
+                IDPAGOVARIO = Global.Multipago.IDPAGO,
+                CORRIENTE = corriente,
+                ADICIONAL = adicional,
+                TOTAL = monto,
+                IMPORTE_LETRA = ImporteLetra.NumPalabra(total),
+                CONTRIBUYENTE = contribuyente,
+                RFC = rfc,
+                DOMICILIO= domicilio,
+                CFDI = cfdi,
+                PERIODO_ACTUAL = DateTime.Now.Year
+            });
+            
+
+        }
         #endregion
 
-        void AsignaFormulario(List<ActaNacimientoBE> lstReg)
+        void AsignaFormulario(ActaNacimientoBE acta)
         {
-            lmul = new List<Multipago>();
-            lmul= GetMultipago("ECA");
+            Global.Multipago = GetMultipago("ECA");//Expedición de copias de actas
 
-            foreach (var idat in lstReg)
-            {
                 //Van asignados todos los campos en el formulario....
-              
-                lblCurpAnDVP.Text = idat.CURP.ToString();
-                lblEntidadRegAnDVP.Text = idat.CDES_EFR.ToString();
-                lblMunRegAnDVP.Text = idat.CMUNNACREG.ToString();
-                lblFechaRegAnDVP.Text = idat.DFECHA_REG.ToString();
-                lblLibroAnDVP.Text = idat.NLIBRO.ToString();
-                lblNumActaAnDVP.Text = idat.CACTA.ToString();
-                lblNombrePrDVP.Text = idat.CNOMBREREG.ToString();
-                lblPrimerApellidoPrDVP.Text = idat.CAPE1REG.ToString();
-                lblSegApellidoPrDVP.Text = idat.CAPE2REG.ToString();
-                lblFechaNacPrDVP.Text = idat.DFECHANAC.ToString();
-                lblLugNacPrDVP.Text = idat.CLOCNACREG.ToString();
-                lblSexoPrDVP.Text = idat.SEXO.ToString();
-                //-------------------
-                lblNombrePadreFprDVP.Text = idat.CNOMPADRE.ToString();
-                lblApellido1PadreFprDVP.Text = idat.CAPE1PADRE.ToString();
-                lblApellido2PadreFprDVP.Text = idat.CAPE2PADRE.ToString();
-                lblNacionalidadPadreFprDVP.Text = idat.DES_NACPA.ToString();
-                lblNombreMadreFprDVP.Text = idat.CNOMMADRE.ToString();
-                lblApellido1MadreFprDVP.Text = idat.CAPE1MADRE.ToString();
-                lblApellido2MadreFprDVP.Text = idat.CAPE2MADRE.ToString();
-                lblNacionalidadMadreFprDVP.Text = idat.DES_NACMADRE.ToString();
-                txtanotacionesMarginalesDVP.Text = idat.ANOTMARG.ToString();
-                //------------------------------------------
-                lblDatActaPICurp.Text = idat.CURP.ToString();
-                lblDatActaPINombre.Text = idat.CNOMBREREG.ToString();
-                lblDatActaPIApellido1.Text = idat.CAPE1REG.ToString();
-                lblDatActaPIApellido2.Text = idat.CAPE2REG.ToString();
-                txtMontoPagar.Text = lmul[0].A_PAGAR.ToString("#,#0.00");
-                lblEstatusCambio.Text = "...";
-            }
+            lblCurpAnDVP.Text = acta.CURP.ToString();
+            lblEntidadRegAnDVP.Text = acta.CDES_EFR.ToString();
+            lblMunRegAnDVP.Text = acta.CMUNNACREG.ToString();
+            lblFechaRegAnDVP.Text = acta.DFECHA_REG.ToString();
+            lblLibroAnDVP.Text = acta.NLIBRO.ToString();
+            lblNumActaAnDVP.Text = acta.CACTA.ToString();
+            lblNombrePrDVP.Text = acta.CNOMBREREG.ToString();
+            lblPrimerApellidoPrDVP.Text = acta.CAPE1REG.ToString();
+            lblSegApellidoPrDVP.Text = acta.CAPE2REG.ToString();
+            lblFechaNacPrDVP.Text = acta.DFECHANAC.ToString();
+            lblLugNacPrDVP.Text = acta.CLOCNACREG.ToString();
+            lblSexoPrDVP.Text = acta.SEXO.ToString();
+            //-------------------
+            lblNombrePadreFprDVP.Text = acta.CNOMPADRE.ToString();
+            lblApellido1PadreFprDVP.Text = acta.CAPE1PADRE.ToString();
+            lblApellido2PadreFprDVP.Text = acta.CAPE2PADRE.ToString();
+            lblNacionalidadPadreFprDVP.Text = acta.DES_NACPA.ToString();
+            lblNombreMadreFprDVP.Text = acta.CNOMMADRE.ToString();
+            lblApellido1MadreFprDVP.Text = acta.CAPE1MADRE.ToString();
+            lblApellido2MadreFprDVP.Text = acta.CAPE2MADRE.ToString();
+            lblNacionalidadMadreFprDVP.Text = acta.DES_NACMADRE.ToString();
+            txtanotacionesMarginalesDVP.Text = acta.ANOTMARG.ToString();
+            //------------------------------------------
+            lblDatActaPICurp.Text = acta.CURP.ToString();
+            lblDatActaPINombre.Text = acta.CNOMBREREG.ToString();
+            lblDatActaPIApellido1.Text = acta.CAPE1REG.ToString();
+            lblDatActaPIApellido2.Text = acta.CAPE2REG.ToString();
+            txtMontoPagar.Text = Global.Multipago.A_PAGAR.ToString("#,#0.00");
+            lblEstatusCambio.Text = "...";
         }
     }
 }

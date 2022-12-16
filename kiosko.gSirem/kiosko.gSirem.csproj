@@ -40,6 +40,9 @@
     <Reference Include="EQATEC.Analytics.Monitor">
       <HintPath>C:\Users\esteb\OneDrive\Documents\PROYECTOS\POZARICA\GSirem2022_134\kiosko.gSirem\lib\Bin45\EQATEC.Analytics.Monitor.dll</HintPath>
     </Reference>
+    <Reference Include="Humanizer, Version=2.14.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Humanizer.Core.2.14.1\lib\netstandard2.0\Humanizer.dll</HintPath>
+    </Reference>
     <Reference Include="IKVM.AWT.WinForms">
       <HintPath>..\wpfKiosko20\lib\IKVM.AWT.WinForms.dll</HintPath>
     </Reference>
@@ -267,7 +270,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusquedaContribuyente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BusquedaContribuyente.Designer.cs">
+      <DependentUpon>BusquedaContribuyente.cs</DependentUpon>
+    </Compile>
     <Compile Include="clases\AccesoDatos.cs" />
+    <Compile Include="clases\ImporteLetra.cs" />
     <Compile Include="clases\MetaDatos.cs" />
     <Compile Include="clases\Caja.cs" />
     <Compile Include="clases\Denominacion.cs" />
@@ -294,6 +304,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BusquedaContribuyente.resx">
+      <DependentUpon>BusquedaContribuyente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmActaNacimiento.resx">
       <DependentUpon>frmActaNacimiento.cs</DependentUpon>
     </EmbeddedResource>

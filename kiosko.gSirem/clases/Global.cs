@@ -11,5 +11,19 @@ namespace kiosko.gSirem
         private static String _sqlCad = "";
 
         public static string SqlCad { get => _sqlCad; set => _sqlCad = value; }
+
+        private static Multipago multipago = null;
+        public static Multipago Multipago
+        {
+            get { return Global.multipago; }
+            set { Global.multipago = value; }
+        }
+
+        private static ActaNacimientoBE acta = null;
+        public static ActaNacimientoBE Acta
+        {
+            get { return Global.acta; }
+            set { Global.acta = value; }
+        }
     }
 }

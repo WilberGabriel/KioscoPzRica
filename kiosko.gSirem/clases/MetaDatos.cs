@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace kiosko.gSirem
 {
-   public class Multipago
+    public class Multipago
     {
         Int64 _IDPAGO;
         Decimal _APAGAR;
         String _CUENTA;
-        Boolean _ADICIONAL;
+        Boolean _ADICIONAL,_REDONDEO;
 
         public Int64 IDPAGO { get => _IDPAGO; set => _IDPAGO = value; }
         public Decimal A_PAGAR { get => _APAGAR; set => _APAGAR = value; }
         public string CUENTA { get => _CUENTA; set => _CUENTA = value; }
         public Boolean ADICIONAL { get => _ADICIONAL; set => _ADICIONAL = value; }
+        public Boolean REDONDEO { get => _REDONDEO; set => _REDONDEO = value; }
     }
    public class ActaNacimientoBE
     {
@@ -60,5 +61,24 @@ namespace kiosko.gSirem
         public string DES_NACMADRE { get => _DES_NACMADRE; set => _DES_NACMADRE = value; }
         public string ANOTMARG { get => _ANOTMARG; set => _ANOTMARG = value; }
         public short ExisteCurp { get => existeCurp; set => existeCurp = value; }
+    }
+
+    public class PagoActa
+    {
+        Int64 idpagovario;
+        Decimal corriente, adicional, total;
+        String importeLetra, contribuyente, rfc, domicilio, cfdi;
+        int periodoActual;//solo año
+
+        public Int64 IDPAGOVARIO { get => idpagovario; set => idpagovario = value; }
+        public Decimal CORRIENTE { get => corriente; set => corriente = value; }
+        public Decimal ADICIONAL { get => adicional; set => adicional = value; }
+        public Decimal TOTAL { get => total; set => total = value; }
+        public string IMPORTE_LETRA { get => importeLetra; set => importeLetra = value; }
+        public string CONTRIBUYENTE { get => contribuyente; set => contribuyente = value; }
+        public string RFC { get => rfc; set => rfc = value; }
+        public string DOMICILIO { get => domicilio; set => domicilio = value; }
+        public string CFDI { get => cfdi; set => cfdi = value; }
+        public int PERIODO_ACTUAL { get => periodoActual; set => periodoActual = value; }
     }
 }
