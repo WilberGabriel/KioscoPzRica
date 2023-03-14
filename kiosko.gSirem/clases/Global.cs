@@ -15,15 +15,15 @@ namespace kiosko.gSirem
         private static Multipago multipago = null;
         public static Multipago Multipago
         {
-            get { return Global.multipago; }
-            set { Global.multipago = value; }
+            get { return multipago; }
+            set { multipago = value; }
         }
 
         private static ActaNacimientoBE acta = null;
         public static ActaNacimientoBE Acta
         {
-            get { return Global.acta; }
-            set { Global.acta = value; }
+            get { return acta; }
+            set { acta = value; }
         }
     }
 }

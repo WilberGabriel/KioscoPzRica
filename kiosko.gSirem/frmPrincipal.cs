@@ -1,4 +1,8 @@
-﻿using System;
+﻿using com.sun.activation.registries;
+using com.sun.corba.se.impl.orbutil.graph;
+using kiosko.gSirem.Properties;
+using org.apache.logging.log4j.core.appender.routing;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -13,24 +17,40 @@ namespace kiosko.gSirem
 {
     public partial class frmPrincipal : Form
     {
+        frmActaNacimiento frmActa = null;
         public frmPrincipal()
         {
-            InitializeComponent();
+            InitializeComponent(); string cad = ConfigurationManager.AppSettings["sqlCad"].ToString().Trim();
+            Global.SqlCad = cad.ToString();
+            btnSalir.Visible = false;
         }
 
-        public void loadform(object Form)
+        //METODO PARA ABRIR FORM DENTRO DE PANEL-----------------------------------------------------
+        private void OpenFormIntoPanel(object formHijo)
         {
-           string cad = ConfigurationManager.AppSettings["sqlCad"].ToString().Trim();
-            Global.SqlCad = cad.ToString();
+            btnSalir.Visible = true;
+            if (this.mainpanel.Controls.Contains((Control)formHijo))
+            {
+                Form fh = formHijo as Form;
+                fh.TopLevel = false;
+                fh.FormBorderStyle = FormBorderStyle.None;
+                fh.Dock = DockStyle.Fill;
+                this.mainpanel.Tag = fh;
+                fh.Show();
+            }
+            else
+            {
+                if (this.mainpanel.Controls.Count > 0)
+                    this.mainpanel.Controls.RemoveAt(0);
+                Form fh = formHijo as Form;
+                fh.TopLevel = false;
+                fh.FormBorderStyle = FormBorderStyle.None;
+                fh.Dock = DockStyle.Fill;
 
-            if (this.mainpanel.Controls.Count > 0)
-                this.mainpanel.Controls.RemoveAt(0);
-            Form f = Form as Form;
-            f.TopLevel = false;
-            f.Dock = DockStyle.Fill;
-            this.mainpanel.Controls.Add(f);
-            this.mainpanel.Tag = f;
-            f.Show();
+                this.mainpanel.Controls.Add(fh);
+                this.mainpanel.Tag = fh;
+                fh.Show();
+            }
         }
 
         private void radTileElement1_Click(object sender, EventArgs e)
@@ -41,12 +61,40 @@ namespace kiosko.gSirem
 
         private void radTileElement2_Click(object sender, EventArgs e)
         {
-            loadform(new frmActaNacimiento());
+            if (frmActa == null)
+            {
+                frmActa = new frmActaNacimiento();
+                frmActa.FormClosed += new FormClosedEventHandler(MostrarFormLogoAlCerrarForms);
+            }
+            OpenFormIntoPanel(frmActa);
+        }
+        private void MostrarFormLogo()
+        {
+            OpenFormIntoPanel(new frmLogo());
+            btnSalir.Visible = false;
         }
 
+        //METODO PARA MOSTRAR FORMULARIO DE LOGO Al CERRAR OTROS FORM ----------------------------------------------------------
+        private void MostrarFormLogoAlCerrarForms(object sender, FormClosedEventArgs e)
+        {
+            MostrarFormLogo();
+            if ((Control)sender == (Control)frmActa)
+                frmActa = null;
+        }
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            if (frmActa != null)
+                frmActa.Close();
+        }
+
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+            MostrarFormLogo();
+        }
+        public void changeProcesando(bool visible, string msg = "")
+        {
+            lblProcesando.Text = msg;
+            lblProcesando.Visible = visible;
         }
     }
 }

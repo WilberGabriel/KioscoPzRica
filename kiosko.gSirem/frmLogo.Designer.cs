@@ -1,6 +1,6 @@
 ﻿namespace kiosko.gSirem
 {
-    partial class BusquedaContribuyente
+    partial class frmLogo
     {
         /// <summary>
         /// Required designer variable.
@@ -28,31 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // BusquedaContribuyente
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = global::kiosko.gSirem.Properties.Resources.logo;
+            this.pictureBox1.Location = new System.Drawing.Point(-4, 271);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1386, 170);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // frmLogo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "BusquedaContribuyente";
-            // 
-            // 
-            // 
-            this.RootElement.ApplyShapeToControl = true;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Directorio Fiscal";
-            this.ThemeName = "TelerikMetroTouch";
-            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.pictureBox1);
+            this.Name = "frmLogo";
+            this.Text = "frmLogo";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Telerik.WinControls.Themes.TelerikMetroTouchTheme telerikMetroTouchTheme1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

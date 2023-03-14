@@ -30,13 +30,14 @@
         {
             this.materialTheme1 = new Telerik.WinControls.Themes.MaterialTheme();
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.lblProcesando = new System.Windows.Forms.Label();
             this.btnSalir = new Telerik.WinControls.UI.RadButton();
+            this.mainpanel = new System.Windows.Forms.Panel();
             this.radPanorama1 = new Telerik.WinControls.UI.RadPanorama();
             this.tileGroupElement1 = new Telerik.WinControls.UI.TileGroupElement();
             this.radTileElement1 = new Telerik.WinControls.UI.RadTileElement();
             this.tileGroupElement2 = new Telerik.WinControls.UI.TileGroupElement();
             this.radTileElement2 = new Telerik.WinControls.UI.RadTileElement();
-            this.mainpanel = new System.Windows.Forms.Panel();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSalir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanorama1)).BeginInit();
@@ -45,36 +46,66 @@
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.Color.Silver;
+            this.panelHeader.Controls.Add(this.lblProcesando);
             this.panelHeader.Controls.Add(this.btnSalir);
             this.panelHeader.Controls.Add(this.radPanorama1);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(2);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1242, 413);
+            this.panelHeader.Size = new System.Drawing.Size(828, 268);
             this.panelHeader.TabIndex = 1;
+            // 
+            // lblProcesando
+            // 
+            this.lblProcesando.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblProcesando.AutoSize = true;
+            this.lblProcesando.BackColor = System.Drawing.Color.Transparent;
+            this.lblProcesando.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProcesando.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblProcesando.Location = new System.Drawing.Point(58, 245);
+            this.lblProcesando.Name = "lblProcesando";
+            this.lblProcesando.Size = new System.Drawing.Size(0, 21);
+            this.lblProcesando.TabIndex = 1;
+            this.lblProcesando.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblProcesando.Visible = false;
             // 
             // btnSalir
             // 
             this.btnSalir.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
-            this.btnSalir.Location = new System.Drawing.Point(12, 365);
+            this.btnSalir.Location = new System.Drawing.Point(8, 237);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(2);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(67, 38);
+            this.btnSalir.Size = new System.Drawing.Size(45, 36);
             this.btnSalir.TabIndex = 0;
             this.btnSalir.Text = "X";
             this.btnSalir.ThemeName = "Material";
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // mainpanel
+            // 
+            this.mainpanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainpanel.Location = new System.Drawing.Point(0, 268);
+            this.mainpanel.Margin = new System.Windows.Forms.Padding(2);
+            this.mainpanel.Name = "mainpanel";
+            this.mainpanel.Size = new System.Drawing.Size(828, 219);
+            this.mainpanel.TabIndex = 2;
+            // 
             // radPanorama1
             // 
+            this.radPanorama1.AllowDragDrop = false;
+            this.radPanorama1.CellSize = new System.Drawing.Size(67, 65);
             this.radPanorama1.Dock = System.Windows.Forms.DockStyle.Top;
             this.radPanorama1.Groups.AddRange(new Telerik.WinControls.RadItem[] {
             this.tileGroupElement1,
             this.tileGroupElement2});
             this.radPanorama1.Location = new System.Drawing.Point(0, 0);
+            this.radPanorama1.Margin = new System.Windows.Forms.Padding(2);
             this.radPanorama1.Name = "radPanorama1";
             this.radPanorama1.RowsCount = 3;
+            this.radPanorama1.ScrollBarThickness = 11;
             this.radPanorama1.ShowGroups = true;
-            this.radPanorama1.Size = new System.Drawing.Size(1242, 359);
+            this.radPanorama1.Size = new System.Drawing.Size(828, 233);
             this.radPanorama1.TabIndex = 0;
             this.radPanorama1.Text = "radPanorama1";
             // 
@@ -82,6 +113,7 @@
             // 
             this.tileGroupElement1.Alignment = System.Drawing.ContentAlignment.TopLeft;
             this.tileGroupElement1.AngleTransform = 0F;
+            this.tileGroupElement1.CellSize = new System.Drawing.Size(67, 65);
             this.tileGroupElement1.FlipText = false;
             this.tileGroupElement1.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radTileElement1});
@@ -115,6 +147,7 @@
             // 
             this.tileGroupElement2.Alignment = System.Drawing.ContentAlignment.TopLeft;
             this.tileGroupElement2.AngleTransform = 0F;
+            this.tileGroupElement2.CellSize = new System.Drawing.Size(67, 65);
             this.tileGroupElement2.FlipText = false;
             this.tileGroupElement2.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radTileElement2});
@@ -122,7 +155,7 @@
             this.tileGroupElement2.Name = "tileGroupElement2";
             this.tileGroupElement2.Padding = new System.Windows.Forms.Padding(0);
             this.tileGroupElement2.RightToLeft = false;
-            this.tileGroupElement2.RowsCount = 2;
+            this.tileGroupElement2.RowsCount = 3;
             this.tileGroupElement2.Text = "REGISTRO CIVIL";
             this.tileGroupElement2.TextOrientation = System.Windows.Forms.Orientation.Horizontal;
             this.tileGroupElement2.TextWrap = false;
@@ -131,40 +164,35 @@
             // 
             this.radTileElement2.Alignment = System.Drawing.ContentAlignment.TopLeft;
             this.radTileElement2.AngleTransform = 0F;
-            this.radTileElement2.ColSpan = 5;
+            this.radTileElement2.ColSpan = 4;
             this.radTileElement2.FlipText = false;
             this.radTileElement2.Image = global::kiosko.gSirem.Properties.Resources.cortedecaja;
             this.radTileElement2.Margin = new System.Windows.Forms.Padding(0);
             this.radTileElement2.Name = "radTileElement2";
             this.radTileElement2.Padding = new System.Windows.Forms.Padding(0);
             this.radTileElement2.RightToLeft = false;
-            this.radTileElement2.RowSpan = 2;
-            this.radTileElement2.Text = "ACTA NACIMIENTO";
+            this.radTileElement2.RowSpan = 3;
+            this.radTileElement2.Text = "ACTA DE NACIMIENTO";
             this.radTileElement2.TextOrientation = System.Windows.Forms.Orientation.Horizontal;
             this.radTileElement2.TextWrap = false;
             this.radTileElement2.Click += new System.EventHandler(this.radTileElement2_Click);
             // 
-            // mainpanel
-            // 
-            this.mainpanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainpanel.Location = new System.Drawing.Point(0, 413);
-            this.mainpanel.Name = "mainpanel";
-            this.mainpanel.Size = new System.Drawing.Size(1242, 629);
-            this.mainpanel.TabIndex = 2;
-            // 
             // frmPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1242, 1042);
+            this.ClientSize = new System.Drawing.Size(828, 487);
             this.Controls.Add(this.mainpanel);
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmPrincipal";
             this.Text = "Sistema de Control de Pagos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.panelHeader.ResumeLayout(false);
+            this.panelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSalir)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanorama1)).EndInit();
             this.ResumeLayout(false);
@@ -182,5 +210,6 @@
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.Panel mainpanel;
         private Telerik.WinControls.UI.RadButton btnSalir;
+        public System.Windows.Forms.Label lblProcesando;
     }
 }

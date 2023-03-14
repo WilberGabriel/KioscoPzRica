@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmActaNacimiento));
             this.telerikMetroTheme1 = new Telerik.WinControls.Themes.TelerikMetroTheme();
             this.wizardPage1 = new Telerik.WinControls.UI.WizardPage();
-            this.btnImprimir = new Telerik.WinControls.UI.RadButton();
             this.label1 = new System.Windows.Forms.Label();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panelBody = new System.Windows.Forms.Panel();
@@ -143,7 +142,7 @@
             this.errorProviderDatPadres = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderDatPersonales = new System.Windows.Forms.ErrorProvider(this.components);
             this.radDesktopAlertActaNac = new Telerik.WinControls.UI.RadDesktopAlert(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.btnImprimir)).BeginInit();
+            this.object_2350e420_2c73_4474_b962_a4809272da6c = new Telerik.WinControls.RootRadElement();
             this.panelHeader.SuspendLayout();
             this.panelBody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radWizard1)).BeginInit();
@@ -198,36 +197,22 @@
             this.wizardPage1.Title = "VISTA PREVIA";
             this.wizardPage1.UseCompatibleTextRendering = false;
             // 
-            // btnImprimir
-            // 
-            this.btnImprimir.BackColor = System.Drawing.Color.Maroon;
-            this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold);
-            this.btnImprimir.ForeColor = System.Drawing.Color.White;
-            this.btnImprimir.Location = new System.Drawing.Point(975, 30);
-            this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(239, 50);
-            this.btnImprimir.TabIndex = 1;
-            this.btnImprimir.Text = "Imprimir";
-            this.btnImprimir.ThemeName = "Office2007Black";
-            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
-            // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Bookman Old Style", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Maroon;
-            this.label1.Location = new System.Drawing.Point(329, 22);
+            this.label1.Location = new System.Drawing.Point(493, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(401, 38);
             this.label1.TabIndex = 1;
             this.label1.Text = "ACTA DE NACIMIENTO";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelHeader
             // 
             this.panelHeader.Controls.Add(this.label1);
-            this.panelHeader.Controls.Add(this.btnImprimir);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
@@ -268,18 +253,18 @@
             this.radWizard1.Next += new Telerik.WinControls.UI.WizardCancelEventHandler(this.radWizard1_Next);
             this.radWizard1.Finish += new System.EventHandler(this.radWizard1_Finish);
             this.radWizard1.Cancel += new System.EventHandler(this.radWizard1_Cancel);
-            ((Telerik.WinControls.UI.Wizard97CommandArea)(this.radWizard1.GetChildAt(0).GetChildAt(0).GetChildAt(3))).IsWelcomePage = true;
-            ((Telerik.WinControls.UI.Wizard97CommandArea)(this.radWizard1.GetChildAt(0).GetChildAt(0).GetChildAt(3))).IsCompletionPage = false;
-            ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard1.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(0))).IsFocusedWizardButton = true;
+            ((Telerik.WinControls.UI.Wizard97CommandArea)(this.radWizard1.GetChildAt(0).GetChildAt(0).GetChildAt(3))).IsWelcomePage = false;
+            ((Telerik.WinControls.UI.Wizard97CommandArea)(this.radWizard1.GetChildAt(0).GetChildAt(0).GetChildAt(3))).IsCompletionPage = true;
+            ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard1.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(0))).IsFocusedWizardButton = false;
             ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard1.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(0))).Text = "Cancelar";
-            ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard1.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(1))).IsFocusedWizardButton = false;
+            ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard1.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(1))).IsFocusedWizardButton = true;
             ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard1.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(1))).Text = "Finalizar";
             ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard1.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(2))).IsFocusedWizardButton = false;
             ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard1.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(2))).Text = "Siguiente   >";
             ((Telerik.WinControls.UI.BaseWizardElement)(this.radWizard1.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(3))).Visibility = Telerik.WinControls.ElementVisibility.Hidden;
             ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard1.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(4))).IsFocusedWizardButton = false;
             ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard1.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(4))).Text = "<   Atras";
-            ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard1.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(4))).Enabled = false;
+            ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard1.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(4))).Enabled = true;
             // 
             // wizardCompletionPage1
             // 
@@ -309,7 +294,7 @@
             this.panelWizardTitleFinish.Controls.Add(this.label17);
             this.panelWizardTitleFinish.Location = new System.Drawing.Point(150, 69);
             this.panelWizardTitleFinish.Name = "panelWizardTitleFinish";
-            this.panelWizardTitleFinish.Size = new System.Drawing.Size(1506, 892);
+            this.panelWizardTitleFinish.Size = new System.Drawing.Size(1236, 551);
             this.panelWizardTitleFinish.TabIndex = 2;
             // 
             // lblTimer
@@ -369,7 +354,7 @@
             this.txtMontoPagar.Location = new System.Drawing.Point(563, 453);
             this.txtMontoPagar.Name = "txtMontoPagar";
             this.txtMontoPagar.ReadOnly = true;
-            this.txtMontoPagar.Size = new System.Drawing.Size(501, 88);
+            this.txtMontoPagar.Size = new System.Drawing.Size(501, 62);
             this.txtMontoPagar.TabIndex = 26;
             this.txtMontoPagar.Text = "120.00";
             this.txtMontoPagar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -607,6 +592,7 @@
             // txtLblCmmtCrup
             // 
             this.txtLblCmmtCrup.AutoSize = false;
+            this.txtLblCmmtCrup.Enabled = false;
             this.txtLblCmmtCrup.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.txtLblCmmtCrup.Location = new System.Drawing.Point(27, 188);
             this.txtLblCmmtCrup.Multiline = true;
@@ -712,16 +698,19 @@
             // 
             // ddlSexoDP
             // 
-            this.ddlSexoDP.DropDownHeight = 200;
+            this.ddlSexoDP.AutoSizeItems = true;
+            this.ddlSexoDP.DropDownHeight = 100;
             this.ddlSexoDP.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.ddlSexoDP.Location = new System.Drawing.Point(473, 419);
             this.ddlSexoDP.Name = "ddlSexoDP";
             this.ddlSexoDP.Size = new System.Drawing.Size(422, 32);
             this.ddlSexoDP.TabIndex = 30;
             this.ddlSexoDP.ThemeName = "ControlDefault";
+            this.ddlSexoDP.VisualListItemFormatting += new Telerik.WinControls.UI.VisualListItemFormattingEventHandler(this.ddlSexoDP_VisualListItemFormatting);
             // 
             // ddlMesNacimientoDP
             // 
+            this.ddlMesNacimientoDP.AutoSizeItems = true;
             this.ddlMesNacimientoDP.DropDownHeight = 200;
             this.ddlMesNacimientoDP.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.ddlMesNacimientoDP.Location = new System.Drawing.Point(473, 251);
@@ -729,9 +718,11 @@
             this.ddlMesNacimientoDP.Size = new System.Drawing.Size(422, 32);
             this.ddlMesNacimientoDP.TabIndex = 29;
             this.ddlMesNacimientoDP.ThemeName = "ControlDefault";
+            this.ddlMesNacimientoDP.VisualListItemFormatting += new Telerik.WinControls.UI.VisualListItemFormattingEventHandler(this.ddlMesNacimientoDP_VisualListItemFormatting);
             // 
             // ddlDiaNacimientoDP
             // 
+            this.ddlDiaNacimientoDP.AutoSizeItems = true;
             this.ddlDiaNacimientoDP.DropDownHeight = 200;
             this.ddlDiaNacimientoDP.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.ddlDiaNacimientoDP.Location = new System.Drawing.Point(28, 251);
@@ -739,6 +730,8 @@
             this.ddlDiaNacimientoDP.Size = new System.Drawing.Size(422, 32);
             this.ddlDiaNacimientoDP.TabIndex = 28;
             this.ddlDiaNacimientoDP.ThemeName = "ControlDefault";
+            this.ddlDiaNacimientoDP.VisualListItemFormatting += new Telerik.WinControls.UI.VisualListItemFormattingEventHandler(this.ddlDiaNacimientoDP_VisualListItemFormatting);
+            ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlDiaNacimientoDP.GetChildAt(0))).Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             // 
             // btnBuscarDatPer
             // 
@@ -773,6 +766,7 @@
             // 
             this.txtAnioNacimientoDG.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.txtAnioNacimientoDG.Location = new System.Drawing.Point(909, 251);
+            this.txtAnioNacimientoDG.MaxLength = 4;
             this.txtAnioNacimientoDG.Name = "txtAnioNacimientoDG";
             this.txtAnioNacimientoDG.Size = new System.Drawing.Size(422, 44);
             this.txtAnioNacimientoDG.TabIndex = 22;
@@ -870,7 +864,7 @@
             this.panelWizardNext.Controls.Add(this.pvVistaPrevia);
             this.panelWizardNext.Location = new System.Drawing.Point(0, 77);
             this.panelWizardNext.Name = "panelWizardNext";
-            this.panelWizardNext.Size = new System.Drawing.Size(1656, 884);
+            this.panelWizardNext.Size = new System.Drawing.Size(1386, 543);
             this.panelWizardNext.TabIndex = 1;
             // 
             // pvVistaPrevia
@@ -884,7 +878,7 @@
             this.pvVistaPrevia.Location = new System.Drawing.Point(0, 0);
             this.pvVistaPrevia.Name = "pvVistaPrevia";
             this.pvVistaPrevia.SelectedPage = this.pvpDatActaNac;
-            this.pvVistaPrevia.Size = new System.Drawing.Size(1656, 884);
+            this.pvVistaPrevia.Size = new System.Drawing.Size(1386, 543);
             this.pvVistaPrevia.TabIndex = 0;
             this.pvVistaPrevia.Text = "radPageView1";
             this.pvVistaPrevia.ThemeName = "TelerikMetro";
@@ -909,7 +903,7 @@
             this.pvpDatActaNac.Image = global::kiosko.gSirem.Properties.Resources.notadecredito;
             this.pvpDatActaNac.Location = new System.Drawing.Point(439, 4);
             this.pvpDatActaNac.Name = "pvpDatActaNac";
-            this.pvpDatActaNac.Size = new System.Drawing.Size(1213, 876);
+            this.pvpDatActaNac.Size = new System.Drawing.Size(943, 535);
             this.pvpDatActaNac.Text = "Acta de nacimiento";
             // 
             // lblNumActaAnDVP
@@ -1422,12 +1416,17 @@
             // 
             // radDesktopAlertActaNac
             // 
-            this.radDesktopAlertActaNac.AutoCloseDelay = 15;
             this.radDesktopAlertActaNac.ContentImage = global::kiosko.gSirem.Properties.Resources.notadecredito;
             this.radDesktopAlertActaNac.PopupAnimationDirection = Telerik.WinControls.UI.RadDirection.Up;
             this.radDesktopAlertActaNac.ScreenPosition = Telerik.WinControls.UI.AlertScreenPosition.TopRight;
             this.radDesktopAlertActaNac.ShowOptionsButton = false;
             this.radDesktopAlertActaNac.ThemeName = "TelerikMetro";
+            // 
+            // object_2350e420_2c73_4474_b962_a4809272da6c
+            // 
+            this.object_2350e420_2c73_4474_b962_a4809272da6c.Name = "object_2350e420_2c73_4474_b962_a4809272da6c";
+            this.object_2350e420_2c73_4474_b962_a4809272da6c.StretchHorizontally = true;
+            this.object_2350e420_2c73_4474_b962_a4809272da6c.StretchVertically = true;
             // 
             // frmActaNacimiento
             // 
@@ -1445,7 +1444,6 @@
             this.Text = "frmActaNacimiento";
             this.ThemeName = "TelerikMetro";
             this.Load += new System.EventHandler(this.frmActaNacimiento_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.btnImprimir)).EndInit();
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
             this.panelBody.ResumeLayout(false);
@@ -1501,7 +1499,6 @@
         #endregion
         private Telerik.WinControls.Themes.TelerikMetroTheme telerikMetroTheme1;
         private Telerik.WinControls.UI.WizardPage wizardPage1;
-        private Telerik.WinControls.UI.RadButton btnImprimir;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.Panel panelBody;
@@ -1612,5 +1609,6 @@
         private Telerik.WinControls.UI.RadDesktopAlert radDesktopAlertActaNac;
         private System.Windows.Forms.Label lblEstatusCambio;
         private System.Windows.Forms.Label lblTimer;
+        private Telerik.WinControls.RootRadElement object_2350e420_2c73_4474_b962_a4809272da6c;
     }
 }

@@ -19,6 +19,8 @@ using System.Globalization;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using javax.swing.plaf;
 
 namespace kiosko.gSirem
 {
@@ -28,7 +30,8 @@ namespace kiosko.gSirem
         private System.Windows.Forms.Timer aTimer;
         private int counter = 60;
         private BusquedaContribuyente frmBusqueda;
-
+        bool procesando = false;
+        bool step1 = false, step2 = false, singleStepDP = false;
         public frmActaNacimiento()
         {
             InitializeComponent();  
@@ -485,10 +488,12 @@ namespace kiosko.gSirem
             {
                 ddlDiaNacimientoDP.Items.Add(i.ToString());
             }
+            //ddlDiaNacimientoDP.Popup.Height = 200;
         }
 
         private void CargarSexo()
         {
+            ddlSexoDP.DataSource = null;
             ddlSexoDP.Items.Add("HOMBRE".ToString());
             ddlSexoDP.Items.Add("MUJER".ToString());
         }
@@ -520,78 +525,106 @@ namespace kiosko.gSirem
             lblNombreCurp.Visible = activo;
             lblPrimerApellido.Visible = activo;
             lblSegundoApellido.Visible = activo;
+            cleanInResetSearch();
         }
 
         void limpiarCampos()
         {
-            radPageViewBusqueda.SelectedPage = pageViewCurp;
-            pvVistaPrevia.SelectedPage = pvpDatActaNac;
+            try
+            {
+                radPageViewBusqueda.SelectedPage = pageViewCurp;
+                pvVistaPrevia.SelectedPage = pvpDatActaNac;
 
-            /*CURP*/
-            txtCurpBusqueda.Text = "";
+                /*CURP*/
+                txtCurpBusqueda.Text = "";
+                txtNombresCurp.Text = "";
+                txtPrimerApellidoCurp.Text = "";
+                txtSegundoApellidoCurp.Text = "";
+                lblEstatusCurp.Text = "";
+                //-----------------------------------
+                resetBusqueda(false);
+                //-----------------------------------
+                txtNombreDP.Text = "";
+                txtPrimerApellidoDP.Text = "";
+                txtSegundoApellidoDP.Text = "";
+                ddlDiaNacimientoDP.Text = "";
+                ddlMesNacimientoDP.Text = "";
+                txtAnioNacimientoDG.Text = "";
+                ddlSexoDP.Text = "";
+                lblEstatusDP.Text = "";
+                //-----------------------------------
+                lblCurpAnDVP.Text = "";
+                lblEntidadRegAnDVP.Text = "";
+                lblMunRegAnDVP.Text = "";
+                lblFechaRegAnDVP.Text = "";
+                lblLibroAnDVP.Text = "";
+                lblNumActaAnDVP.Text = "";
+                lblNombrePrDVP.Text = "";
+                lblPrimerApellidoPrDVP.Text = "";
+                lblSegApellidoPrDVP.Text = "";
+                lblFechaNacPrDVP.Text = "";
+                lblLugNacPrDVP.Text = "";
+                lblNombrePadreFprDVP.Text = "";
+                lblApellido1PadreFprDVP.Text = "";
+                lblApellido2PadreFprDVP.Text = "";
+                lblNacionalidadPadreFprDVP.Text = "";
+                lblNombreMadreFprDVP.Text = "";
+                lblApellido1MadreFprDVP.Text = "";
+                lblApellido2MadreFprDVP.Text = "";
+                lblNacionalidadMadreFprDVP.Text = "";
+                txtanotacionesMarginalesDVP.Text = "";
+                //------------------------------------------
+                lblDatActaPICurp.Text = "";
+                lblDatActaPINombre.Text = "";
+                lblDatActaPIApellido1.Text = "";
+                lblDatActaPIApellido2.Text = "";
+                txtMontoPagar.Text = "0.00";
+                lblEstatusCambio.Text = "";
+                lblTimer.Text = "";
+                //-------------------------------------------
+                btnConfirmar.Enabled = true;
+                Global.Multipago = null;
+                Global.Acta = null;
+                step1 = false;
+                step2 = false;
+                singleStepDP = false;
+            }catch(Exception ex) { }
+        }
+
+        void cleanInResetSearch()
+        {
+            //txtCurpBusqueda.Text = "";
             txtNombresCurp.Text = "";
             txtPrimerApellidoCurp.Text = "";
             txtSegundoApellidoCurp.Text = "";
             lblEstatusCurp.Text = "";
-            //-----------------------------------
-            resetBusqueda(false);
-            //-----------------------------------
-            txtNombreDP.Text = "";
-            txtPrimerApellidoDP.Text = "";
-            txtSegundoApellidoDP.Text = "";
-            ddlDiaNacimientoDP.Text = "";
-            ddlMesNacimientoDP.Text = "";
-            txtAnioNacimientoDG.Text = "";
-            ddlSexoDP.Text = "";
-            lblEstatusDP.Text = "";
-            //-----------------------------------
-            lblCurpAnDVP.Text = "";
-            lblEntidadRegAnDVP.Text = "";
-            lblMunRegAnDVP.Text = "";
-            lblFechaRegAnDVP.Text = "";
-            lblLibroAnDVP.Text = "";
-            lblNumActaAnDVP.Text = "";
-            lblNombrePrDVP.Text = "";
-            lblPrimerApellidoPrDVP.Text = "";
-            lblSegApellidoPrDVP.Text = "";
-            lblFechaNacPrDVP.Text = "";
-            lblLugNacPrDVP.Text = "";
-            lblNombrePadreFprDVP.Text = "";
-            lblApellido1PadreFprDVP.Text = "";
-            lblApellido2PadreFprDVP.Text = "";
-            lblNacionalidadPadreFprDVP.Text = "";
-            lblNombreMadreFprDVP.Text = "";
-            lblApellido1MadreFprDVP.Text = "";
-            lblApellido2MadreFprDVP.Text = "";
-            lblNacionalidadMadreFprDVP.Text = "";
-            txtanotacionesMarginalesDVP.Text = "";
-            //------------------------------------------
-            lblDatActaPICurp.Text = "";
-            lblDatActaPINombre.Text = "";
-            lblDatActaPIApellido1.Text = "";
-            lblDatActaPIApellido2.Text = "";
-            txtMontoPagar.Text = "0.00";
-            lblEstatusCambio.Text = "...";
-            lblTimer.Text = "...";
-            //-------------------------------------------
-            btnConfirmar.Enabled = true;
-            Global.Multipago = null;
-            Global.Acta = null;
         }
-
         #endregion
 
         #region METODOS DE EVENTOS
 
-        private void btnBuscarCurp_Click(object sender, EventArgs e)
+        private async void btnBuscarCurp_Click(object sender, EventArgs e)
         {
+            resetBusqueda(false);
             if (WithErrorsCURP())
             {
                 string _curp = txtCurpBusqueda.Text.ToString().Trim().ToUpper();
-                if (existeCURP(_curp))
+
+                frmPrincipal principal = (frmPrincipal)this.Parent.Parent;
+                principal.changeProcesando(true, "Buscando registro...");
+
+                if (await existeCURP(_curp))
+                {
+                    btnBuscarCurp.Enabled = true;
                     resetBusqueda(true);
+                    principal.changeProcesando(true);
+                    step1 = true;
+                }
                 else
                 {
+                    resetBusqueda(false);
+                    principal.changeProcesando(false);
+                    step1 = false;
                     this.radDesktopAlertActaNac.CaptionText = "Alerta de búsqueda de CURP!";
                     this.radDesktopAlertActaNac.ContentText = $"No encontramos la curp {_curp}, que nos solicita, favor de verificar el dato....";
                     this.radDesktopAlertActaNac.Show();
@@ -602,33 +635,41 @@ namespace kiosko.gSirem
                 this.radDesktopAlertActaNac.CaptionText = "Alerta de búsqueda de CURP!";
                 this.radDesktopAlertActaNac.ContentText = "Existen registros que aun no se han llenado, favor realizar el correcto llenado...";
                 this.radDesktopAlertActaNac.Show();
-                //MessageBox.Show("Con errores");
-                // Do whatever here... Submit
             }
         }
-
-        private void btnCurpContinuar_Click(object sender, EventArgs e)
+        private async void btnCurpContinuar_Click(object sender, EventArgs e)
         {
-            if (WithErrorsCURP_Padres())
+            if (WithErrorsCURP_Padres() && step1)
             {
                 string curp, nombre, paterno, materno;
                 curp = txtCurpBusqueda.Text.ToString().Trim().ToUpper();
                 nombre = txtNombresCurp.Text.ToString().Trim().ToUpper();
                 paterno = txtPrimerApellidoCurp.Text.ToString().Trim().ToUpper();
                 materno = txtSegundoApellidoCurp.Text.ToString().Trim().ToUpper();
+                Global.Acta = null;
+                lblEstatusCurp.Text = "";
 
-                BusquedaCurp(curp, nombre, paterno, materno);
+                frmPrincipal principal = (frmPrincipal)this.Parent.Parent;
+                principal.changeProcesando(true, "Validando información...");
+
+                await BusquedaCurp(curp, nombre, paterno, materno);
+
                 if (Global.Acta != null)
                 {
                     AsignaFormulario(Global.Acta);
                     lblEstatusCurp.Text = "LA INFORMACIÓN HA SIDO VALIDADA, FAVOR DE CONTINUAR CON EL TRÁMITE...";
                     lblEstatusDP.Text = "...";
+                    principal.changeProcesando(false);
+                    step2 = true;
                 }
                 else
                 {
                     this.radDesktopAlertActaNac.CaptionText = "Alerta de búsqueda de CURP!";
                     this.radDesktopAlertActaNac.ContentText = "El registro solicitado no ha sido ubicado, favor de corregir la búsqueda!";
                     this.radDesktopAlertActaNac.Show();
+                    principal.changeProcesando(false);
+                    lblEstatusCurp.Text = "";
+                    step2 = false;
                 }
 
             }
@@ -642,12 +683,12 @@ namespace kiosko.gSirem
             }
         }
 
-        private void btnBuscarDatPer_Click(object sender, EventArgs e)
+        private async void btnBuscarDatPer_Click(object sender, EventArgs e)
         {
             if (WithErrorsDatosPersonales())
             {
                 string nombre, paterno, materno, fNacimiento,sexo,edoNacimiento;
-               
+                lblEstatusDP.Text = "";
                 nombre = txtNombreDP.Text.ToString().Trim().ToUpper();
                 paterno = txtPrimerApellidoDP.Text.ToString().Trim().ToUpper();
                 materno = txtSegundoApellidoDP.Text.ToString().Trim().ToUpper();
@@ -656,16 +697,19 @@ namespace kiosko.gSirem
                 fNacimiento = $"{txtAnioNacimientoDG.Text.ToString().Trim()}-{ddlMesNacimientoDP.SelectedIndex+1.ToString("##")}-{ddlDiaNacimientoDP.Text.ToString().Trim()}";
                 //2016-05-12
 
-                Global.Acta = BusquedaDatosPersonales(nombre, paterno, materno, fNacimiento, sexo, edoNacimiento);
+                Global.Acta = await BusquedaDatosPersonales(nombre, paterno, materno, fNacimiento, sexo, edoNacimiento);
               
                 if (Global.Acta!=null)
                 {
                     AsignaFormulario(Global.Acta);
                     lblEstatusDP.Text = "LA INFORMACIÓN HA SIDO VALIDADA, FAVOR DE CONTINUAR CON EL TRÁMITE...";
-                    lblEstatusCurp.Text = "...";
+                    //lblEstatusCurp.Text = "...";
+                    singleStepDP = true;
                 }
                 else
                 {
+                    singleStepDP= false;
+                    lblEstatusDP.Text = "";
                     this.radDesktopAlertActaNac.CaptionText = "Alerta de datos personales!";
                     this.radDesktopAlertActaNac.ContentText = "El registro solicitado no ha sido ubicado, favor de corregir la búsqueda!";
                     this.radDesktopAlertActaNac.Show();
@@ -704,8 +748,8 @@ namespace kiosko.gSirem
         private void radWizard1_Next(object sender, WizardCancelEventArgs e)
         {
             string Estatus1 = lblEstatusCurp.Text.ToString().Trim();
-            bool bandera1 = lblEstatusCurp.Text.ToString().Trim().Count() > 3 ? true : false;
-            bool bandera2 = lblEstatusDP.Text.ToString().Trim().Count() > 3 ? true : false;
+            bool bandera1 = step1 && step2; //Paso 1 existe y Paso 2 nombre de padres correctos
+            bool bandera2 = singleStepDP;//Mediante datos personales
 
             if (this.radWizard1.SelectedPage == this.radWizard1.Pages[0])
             {
@@ -760,6 +804,8 @@ namespace kiosko.gSirem
         {
             this.radWizard1.SelectedPage = this.radWizard1.Pages[0];
             //Limpiar todos los campos....
+            limpiarCampos();
+            txtCurpBusqueda.Focus();
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -809,30 +855,41 @@ namespace kiosko.gSirem
 
         #region METODOS DE BASE DE DATOS
 
-        Boolean existeCURP(string curp)
+        async Task<Boolean> existeCURP(string curp)
         {
             Boolean existe = false;
-            AccesoDatos obj = new AccesoDatos();
-            existe = obj.GetExisteCURP(curp,1) > 0;
-
+            await Task.Run(() => {
+                AccesoDatos obj = new AccesoDatos();
+                existe = obj.GetExisteCURP(curp, 1) > 0;
+            });
             return existe;
         }
 
-        ActaNacimientoBE BusquedaDatosPersonales(string nombre, string paterno, string materno, string fNacimiento, string sexo, string edoNacimiento)
+        async Task<ActaNacimientoBE> BusquedaDatosPersonales(string nombre, string paterno, string materno, string fNacimiento, string sexo, string edoNacimiento)
         {
-            Global.Acta = new ActaNacimientoBE();
-            AccesoDatos obj = new AccesoDatos();
-            Global.Acta = obj.GetDatosPersonalesRC(nombre, paterno, materno, fNacimiento, sexo, edoNacimiento);
+            await Task.Run(() =>
+            {
+                try
+                {
+                    Global.Acta = new ActaNacimientoBE();
+                    AccesoDatos obj = new AccesoDatos();
+                    Global.Acta = obj.GetDatosPersonalesRC(nombre, paterno, materno, fNacimiento, sexo, edoNacimiento);
+                }catch(Exception ex) { }
 
+            });
             return Global.Acta;
         }
 
-        ActaNacimientoBE BusquedaCurp(string curp, string nombre, string paterno, string materno)
+        async Task<ActaNacimientoBE> BusquedaCurp(string curp, string nombre, string paterno, string materno)
         {
-            Global.Acta = new ActaNacimientoBE();
-            AccesoDatos obj = new AccesoDatos();
-            Global.Acta = obj.GetCurpByDP(curp,nombre,paterno,materno,2);
-
+            await Task.Run(() => {
+                try
+                { 
+                    Global.Acta = new ActaNacimientoBE();
+                    AccesoDatos obj = new AccesoDatos();
+                    Global.Acta = obj.GetCurpByDP(curp, nombre, paterno, materno, 2);
+                }catch(Exception ex) { }
+            });
             return Global.Acta;
         }
         Multipago GetMultipago(string letra)
@@ -872,8 +929,11 @@ namespace kiosko.gSirem
             string domicilio = "";
             string cfdi = "NO";
 
-            RadMessageBox.SetThemeName("TelerikMetroTouch");
-            DialogResult result = RadMessageBox.Show(this, "¿Va a requerir factura?", "KIOSCO", MessageBoxButtons.YesNo, RadMessageIcon.Question);
+
+            frmMessage frmMessage = new frmMessage("¿Va a requerir factura?","Factura", RadMessageIcon.Question);
+            DialogResult result =  frmMessage.ShowDialog();    
+            //DialogResult result = RadMessageBox.Show(this, "¿Va a requerir factura?", "KIOSCO", MessageBoxButtons.YesNo, RadMessageIcon.Question);
+            
 
             if (result == DialogResult.Yes)
             {
@@ -888,19 +948,19 @@ namespace kiosko.gSirem
                 rfc = "XAXX010101000";
                 domicilio = "EJEMPLO DE DOMICILIO";
             }
-            obj.RegistrarPagoActa(new PagoActa()
-            {
-                IDPAGOVARIO = Global.Multipago.IDPAGO,
-                CORRIENTE = corriente,
-                ADICIONAL = adicional,
-                TOTAL = monto,
-                IMPORTE_LETRA = ImporteLetra.NumPalabra(total),
-                CONTRIBUYENTE = contribuyente,
-                RFC = rfc,
-                DOMICILIO= domicilio,
-                CFDI = cfdi,
-                PERIODO_ACTUAL = DateTime.Now.Year
-            });
+            //obj.RegistrarPagoActa(new PagoActa()
+            //{
+            //    IDPAGOVARIO = Global.Multipago.IDPAGO,
+            //    CORRIENTE = corriente,
+            //    ADICIONAL = adicional,
+            //    TOTAL = monto,
+            //    IMPORTE_LETRA = ImporteLetra.NumPalabra(total),
+            //    CONTRIBUYENTE = contribuyente,
+            //    RFC = rfc,
+            //    DOMICILIO= domicilio,
+            //    CFDI = cfdi,
+            //    PERIODO_ACTUAL = DateTime.Now.Year
+            //});
             
 
         }
@@ -908,38 +968,64 @@ namespace kiosko.gSirem
 
         void AsignaFormulario(ActaNacimientoBE acta)
         {
-            Global.Multipago = GetMultipago("ECA");//Expedición de copias de actas
+            try
+            {
+                if (acta != null)
+                {
+                    Global.Multipago = GetMultipago("ECA");//Expedición de copias de actas
 
-                //Van asignados todos los campos en el formulario....
-            lblCurpAnDVP.Text = acta.CURP.ToString();
-            lblEntidadRegAnDVP.Text = acta.CDES_EFR.ToString();
-            lblMunRegAnDVP.Text = acta.CMUNNACREG.ToString();
-            lblFechaRegAnDVP.Text = acta.DFECHA_REG.ToString();
-            lblLibroAnDVP.Text = acta.NLIBRO.ToString();
-            lblNumActaAnDVP.Text = acta.CACTA.ToString();
-            lblNombrePrDVP.Text = acta.CNOMBREREG.ToString();
-            lblPrimerApellidoPrDVP.Text = acta.CAPE1REG.ToString();
-            lblSegApellidoPrDVP.Text = acta.CAPE2REG.ToString();
-            lblFechaNacPrDVP.Text = acta.DFECHANAC.ToString();
-            lblLugNacPrDVP.Text = acta.CLOCNACREG.ToString();
-            lblSexoPrDVP.Text = acta.SEXO.ToString();
-            //-------------------
-            lblNombrePadreFprDVP.Text = acta.CNOMPADRE.ToString();
-            lblApellido1PadreFprDVP.Text = acta.CAPE1PADRE.ToString();
-            lblApellido2PadreFprDVP.Text = acta.CAPE2PADRE.ToString();
-            lblNacionalidadPadreFprDVP.Text = acta.DES_NACPA.ToString();
-            lblNombreMadreFprDVP.Text = acta.CNOMMADRE.ToString();
-            lblApellido1MadreFprDVP.Text = acta.CAPE1MADRE.ToString();
-            lblApellido2MadreFprDVP.Text = acta.CAPE2MADRE.ToString();
-            lblNacionalidadMadreFprDVP.Text = acta.DES_NACMADRE.ToString();
-            txtanotacionesMarginalesDVP.Text = acta.ANOTMARG.ToString();
-            //------------------------------------------
-            lblDatActaPICurp.Text = acta.CURP.ToString();
-            lblDatActaPINombre.Text = acta.CNOMBREREG.ToString();
-            lblDatActaPIApellido1.Text = acta.CAPE1REG.ToString();
-            lblDatActaPIApellido2.Text = acta.CAPE2REG.ToString();
-            txtMontoPagar.Text = Global.Multipago.A_PAGAR.ToString("#,#0.00");
-            lblEstatusCambio.Text = "...";
+                    //Van asignados todos los campos en el formulario....
+                    lblCurpAnDVP.Text = acta.CURP.ToString();
+                    lblEntidadRegAnDVP.Text = acta.CDES_EFR.ToString();
+                    lblMunRegAnDVP.Text = acta.CMUNNACREG.ToString();
+                    lblFechaRegAnDVP.Text = acta.DFECHA_REG.ToString();
+                    lblLibroAnDVP.Text = acta.NLIBRO.ToString();
+                    lblNumActaAnDVP.Text = acta.CACTA.ToString();
+                    lblNombrePrDVP.Text = acta.CNOMBREREG.ToString();
+                    lblPrimerApellidoPrDVP.Text = acta.CAPE1REG.ToString();
+                    lblSegApellidoPrDVP.Text = acta.CAPE2REG.ToString();
+                    lblFechaNacPrDVP.Text = acta.DFECHANAC.ToString();
+                    lblLugNacPrDVP.Text = acta.CLOCNACREG.ToString();
+                    lblSexoPrDVP.Text = acta.SEXO.ToString();
+                    //-------------------
+                    lblNombrePadreFprDVP.Text = acta.CNOMPADRE.ToString();
+                    lblApellido1PadreFprDVP.Text = acta.CAPE1PADRE.ToString();
+                    lblApellido2PadreFprDVP.Text = acta.CAPE2PADRE.ToString();
+                    lblNacionalidadPadreFprDVP.Text = acta.DES_NACPA.ToString();
+                    lblNombreMadreFprDVP.Text = acta.CNOMMADRE.ToString();
+                    lblApellido1MadreFprDVP.Text = acta.CAPE1MADRE.ToString();
+                    lblApellido2MadreFprDVP.Text = acta.CAPE2MADRE.ToString();
+                    lblNacionalidadMadreFprDVP.Text = acta.DES_NACMADRE.ToString();
+                    txtanotacionesMarginalesDVP.Text = acta.ANOTMARG.ToString();
+                    //------------------------------------------
+                    lblDatActaPICurp.Text = acta.CURP.ToString();
+                    lblDatActaPINombre.Text = acta.CNOMBREREG.ToString();
+                    lblDatActaPIApellido1.Text = acta.CAPE1REG.ToString();
+                    lblDatActaPIApellido2.Text = acta.CAPE2REG.ToString();
+                    txtMontoPagar.Text = Global.Multipago.A_PAGAR.ToString("#,#0.00");
+                    lblEstatusCambio.Text = "";
+                }
+            }catch(Exception ex){}
+        }
+
+        Font myFont = new Font("Segoe UI", 25);
+        private void changeFontStyle(VisualItemFormattingEventArgs args){
+            args.VisualItem.Font = myFont;
+            args.VisualItem.TextAlignment = ContentAlignment.MiddleCenter;
+        }
+        private void ddlDiaNacimientoDP_VisualListItemFormatting(object sender, VisualItemFormattingEventArgs args)
+        {
+            changeFontStyle(args);
+        }
+
+        private void ddlMesNacimientoDP_VisualListItemFormatting(object sender, VisualItemFormattingEventArgs args)
+        {
+            changeFontStyle(args);
+        }
+
+        private void ddlSexoDP_VisualListItemFormatting(object sender, VisualItemFormattingEventArgs args)
+        {
+            changeFontStyle(args);
         }
     }
 }
